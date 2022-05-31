@@ -4,8 +4,15 @@
   "description": "Project Work Using MERN",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "start-server": "nodemon server.js"
   },
-  "author": "Developer Group",
-  "license": "ISC"
+  "author": "Developers Group",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.3.5",
+    "nodemon": "^2.0.16"
+  }
 }
+
