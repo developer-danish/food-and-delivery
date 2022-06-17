@@ -5,7 +5,8 @@ import isEmail from 'validator/lib/isEmail';
 import isEmpty from 'validator/lib/isEmpty';
 import equals from 'validator/lib/equals';
 import { showErrorMsg, showSuccessMsg } from './../helpers/message';
-import { showLoading} from './../helpers/loading';
+import { showLoading } from './../helpers/loading';
+import { signup } from './../api/auth';
 
 const Signup = () => {
   const [data, setData] = useState({
@@ -42,7 +43,30 @@ const Signup = () => {
     } else if (!equals(password, cpassword)) {
       setData({ ...data, errorMsg: "Passwords does not match" });
     } else {
-      setData({ ...data, successMsg: "Eid mubarakh oooooooooooo", loading: true });
+      const { username, email, password } = data;
+      const formData = { username, email, password };
+      setData({ ...data, loading: true });
+      //sending data to server
+      signup(formData)
+        .then((response) => {
+         
+          setData({
+            username: '',
+            email: '',
+            password: '',
+            cpassword: '',
+            loading: false,
+            successMsg: response.data.successMessage
+          })
+        })
+        .catch(err => {
+          console.log("signup error", err);
+          setData({
+            ...data,
+            loading: false,
+            errorMsg: err.response.data.errorMessage
+          });
+        })
     }
   }
   const showSignUp = () => (
