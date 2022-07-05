@@ -1,14 +1,28 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import "./Signup.css"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useHistory } from 'react-router-dom';
 import isEmail from 'validator/lib/isEmail';
 import isEmpty from 'validator/lib/isEmpty';
 import equals from 'validator/lib/equals';
 import { showErrorMsg, showSuccessMsg } from './../helpers/message';
 import { showLoading } from './../helpers/loading';
 import { signup } from './../api/auth';
+import { isAuthenticated } from '../helpers/auth';
 
 const Signup = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated() && isAuthenticated().role === 1) {
+      //For admin
+      navigate('/admin/dashboard');
+    }
+    else if (isAuthenticated() && isAuthenticated().role === 0) {
+      //For user
+      navigate('/user/dashboard');
+    }
+  }, [navigate]);
+
   const [data, setData] = useState({
     username: '',
     email: '',
@@ -49,7 +63,7 @@ const Signup = () => {
       //sending data to server
       signup(formData)
         .then((response) => {
-         
+
           setData({
             username: '',
             email: '',
