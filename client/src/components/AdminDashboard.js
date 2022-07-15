@@ -1,10 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { isAuthenticated } from '../helpers/auth';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
+import { createCategory } from '../api/category';
+import isEmpty from 'validator/lib/isEmpty';
+import { showErrorMsg, showSuccessMsg } from './../helpers/message';
+import { showLoading } from './../helpers/loading';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
+  const [category, setCategory] = useState("");
+
+  const [message, setMessage] = useState({
+    errorMsg: "",
+    successMsg: "",
+    loading: false
+  });
+
+  const { errorMsg, successMsg, loading } = message;
 
   useEffect(() => {
     if (isAuthenticated() && isAuthenticated().role === 1) {
@@ -19,6 +32,64 @@ const AdminDashboard = () => {
       navigate('/signin');
     }
   }, [navigate]);
+
+  const onChangeInput = (e) => {
+    setCategory(e.target.value);
+    setMessage(
+      {
+        errorMsg: "",
+        successMsg: "",
+        loading: false
+      }
+    )
+  }
+
+  const submitCategory = (e) => {
+    console.log(category);
+    const data = { category };
+    if (!isEmpty(category)) {
+      setMessage({
+        ...message,
+        loading: true
+      })
+      createCategory(data)
+        .then((response) => {
+          console.log(response);
+          setCategory("");
+          setMessage({
+            ...message,
+            loading: false,
+            successMsg: "category created successfully"
+          })
+        })
+        .catch((err) => {
+          console.log(err);
+          setMessage({
+            ...message,
+            loading: false,
+            errorMsg:  err.response.data.errorMessage
+          })
+        });
+
+    }
+    else {
+      setMessage({
+        ...message,
+        errorMsg: "empty field"
+      })
+    }
+
+  };
+
+  const closeBtn = () => {
+    setCategory("");
+    setMessage({
+      errorMsg: "",
+      successMsg: "",
+      loading: false
+    })
+
+  }
 
   const showHeader = () => (
     <div className='bg-dark text-white py-4'>
@@ -65,21 +136,30 @@ const AdminDashboard = () => {
         <div className='modal-content'>
           <div className='modal-header bg-info text-white'>
             <h5 className='modal-title'>Add Category</h5>
-            <Button size="large" variant="text" className='close' data-bs-dismiss='modal'>
+            <Button onClick={closeBtn} size="large" variant="text" className='close' data-bs-dismiss='modal'>
               <span><i className='fas text-black fa-times'></i></span>
             </Button>
           </div>
           <div className='modal-body my-3'>
+            {
+              errorMsg && showErrorMsg(errorMsg)
+            }
+            {
+              successMsg && showSuccessMsg(successMsg)
+            }
+            {
+              loading && <div className='text-center'>{showLoading()}</div>
+            }
             <form>
               <label className='text-secondary'>Category</label>
-              <input type='text' className='form-control' />
+              <input onChange={onChangeInput} value={category} type='text' className='form-control' />
             </form>
           </div>
-          <div className='modal-footer'> 
-          <Button variant="text" className='close' color="secondary" data-bs-dismiss='modal'>
+          <div className='modal-footer'>
+            <Button onClick={closeBtn} variant="text" className='close' color="secondary" data-bs-dismiss='modal'>
               Close
             </Button>
-            <Button variant="text" >Add</Button>
+            <Button onClick={() => submitCategory()} variant="text" >Add</Button>
           </div>
         </div>
       </div>
