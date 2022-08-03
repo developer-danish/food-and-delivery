@@ -3,6 +3,7 @@ const router = express.Router();
 const categoryController = require('../controllers/category');
 const { authenticateJWT } = require('../middleware/authenticator');
 
-router.post("/", /*authenticateJWT*/categoryController.create);
+router.post("/", authenticateJWT, categoryController.create);
+router.get("/", authenticateJWT, categoryController.read);
 
 module.exports = router;

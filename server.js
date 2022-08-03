@@ -6,15 +6,17 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
 const categoryRoutes = require('./routes/category');
+const foodRoutes = require('./routes/food');
 
 // middleware...
+app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'));
-app.use(cookieParser);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/category', categoryRoutes);
+app.use('/api/food', foodRoutes);
 
 connectDB();
 const port = process.env.PORT || 5000;
