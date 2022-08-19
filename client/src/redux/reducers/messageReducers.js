@@ -22,8 +22,6 @@ const messageReducer = (state = INITIAL_STATE, action) => {
                 errorMsg: '',
                 successMsg: ''
             }
-
-
         default:
             return state;
     }

@@ -3,77 +3,49 @@ import isEmpty from 'validator/lib/isEmpty';
 import { Button } from '@mui/material';
 import { showErrorMsg, showSuccessMsg } from './../helpers/message';
 import { showLoading } from './../helpers/loading';
-import { createCategory } from './../api/category';
+// import { createCategory } from './../api/category';
+import { useDispatch, useSelector } from 'react-redux';
+import { clear_message } from './../redux/actions/messageActions';
+import { createCategory } from '../redux/actions/categoryActions';
 
 const AdminCategoryModal = () => {
+    const [clientSideErrorMsg, setClientSideErrorMsg] = useState('')
+    const { successMsg, errorMsg } = useSelector(state => state.messages);
+    const { loading } = useSelector(state => state.loading);
+    const dispatch = useDispatch();
 
     const [category, setCategory] = useState("");
 
-    const [message, setMessage] = useState({
-        errorMsg: "",
-        successMsg: "",
-        loading: false
-    });
+    // const [message, setMessage] = useState({
+    //     errorMsg: "",
+    //     successMsg: "",
+    //     loading: false
+    // });
 
-    const { errorMsg, successMsg, loading } = message;
+    // const { errorMsg, successMsg, loading } = message;
 
     const submitCategory = (e) => {
         console.log(category);
         const data = { category };
-        if (!isEmpty(category)) {
-            setMessage({
-                ...message,
-                loading: true
-            })
-            createCategory(data)
-                .then((response) => {
-                    console.log(response);
-                    setCategory("");
-                    setMessage({
-                        ...message,
-                        loading: false,
-                        successMsg: response.data.successMessage
-                    })
-                })
-                .catch((err) => {
-                    console.log(err);
-                    setMessage({
-                        ...message,
-                        loading: false,
-                        errorMsg: err.response.data.errorMessage
-                    })
-                });
-
+        if (!isEmpty(category)){
+            dispatch(createCategory(data));
+            setCategory('');
         }
         else {
-            setMessage({
-                ...message,
-                errorMsg: "empty field"
-            })
+            setClientSideErrorMsg('Empty field...')
         }
-
     };
 
     const onChangeInput = (e) => {
         setCategory(e.target.value);
-        setMessage(
-          {
-            errorMsg: "",
-            successMsg: "",
-            loading: false
-          }
-        )
-      }
+        dispatch(clear_message());
+    }
 
-      const closeBtn = () => {
+    const closeBtn = () => {
         setCategory("");
-        setMessage({
-          errorMsg: "",
-          successMsg: "",
-          loading: false
-        })
-    
-      }
+        dispatch(clear_message());
+
+    }
 
     return (
         <>
@@ -87,6 +59,9 @@ const AdminCategoryModal = () => {
                             </Button>
                         </div>
                         <div className='modal-body my-3'>
+                            {
+                                clientSideErrorMsg && showErrorMsg(clientSideErrorMsg)
+                            }
                             {
                                 errorMsg && showErrorMsg(errorMsg)
                             }

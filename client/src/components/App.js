@@ -6,9 +6,11 @@ import Signup from './Signup';
 import NotFound from './NotFound';
 import AdminDashboard from './AdminDashboard';
 import UserDashboard from './UserDashboard';
+import AdminEditProduct from './AdminEditProduct';
 
 
-const App = () => (
+const App = () => {
+  return (
   <BrowserRouter>
     <Header />
     {/* <main> */}
@@ -18,11 +20,13 @@ const App = () => (
         <Route exact  path="/signup" element={<Signup></Signup>} />
         <Route exact  path="/admin/dashboard" element={<AdminDashboard></AdminDashboard>} />
         <Route exact  path="/user/dashboard" element={<UserDashboard></UserDashboard>} />
+        <Route exact  path="/admin/edit/product/:productId" element={<AdminEditProduct></AdminEditProduct>} />
         <Route exact path="*" element={<NotFound></NotFound>} />
       </Routes>
       
     {/* </main> */}
   </BrowserRouter>
-);
+  )
+};
 
 export default App;

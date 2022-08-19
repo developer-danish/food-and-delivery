@@ -17,6 +17,7 @@ app.use(morgan('dev'));
 app.use('/api/auth', authRoutes);
 app.use('/api/category', categoryRoutes);
 app.use('/api/food', foodRoutes);
+app.use('/uploads',express.static('uploads'))
 
 connectDB();
 const port = process.env.PORT || 5000;

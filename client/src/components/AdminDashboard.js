@@ -6,6 +6,11 @@ import ActionBtns from './ActionBtns';
 import AdminCategoryModal from './AdminCategoryModal';
 import AdminProductModal from './AdminProductModal';
 
+import { useDispatch } from 'react-redux';
+import { readCategory } from './../redux/actions/categoryActions';
+import { getProducts } from '../redux/actions/productActions';
+import AdminBody from './AdminBody';
+
 const AdminDashboard = () => {
   const navigate = useNavigate();
 
@@ -23,12 +28,20 @@ const AdminDashboard = () => {
     }
   }, [navigate]);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProducts());
+    dispatch(readCategory());
+  }, [dispatch]);
+
   return (
     <section>  {/*onClick event will reset the message state*/}
       <AdminHeader />
       <ActionBtns />
       <AdminCategoryModal />
       <AdminProductModal />
+      <AdminBody />
     </section>
   )
 }

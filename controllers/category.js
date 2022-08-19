@@ -17,6 +17,7 @@ exports.create = async (req, res) => {
         newCategory = await newCategory.save();
 
         res.status(200).json({
+            category: newCategory,
             successMessage: `${newCategory.category} is created!`
         })
     } catch (err) {
