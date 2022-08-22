@@ -135,7 +135,7 @@ const AdminEditProduct = () => {
                                                 // </span>
                                                 null
                                             ) : productImage ? (
-                                                <img style={{ width: '120px', height: '80px' }}
+                                                <img style={{ width: '90px', height: '60px', margin:"7px"}}
                                                     src={`/uploads/${productImage}`} alt='product' />
                                             ) : null
                                         }

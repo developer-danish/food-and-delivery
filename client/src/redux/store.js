@@ -6,12 +6,14 @@ import loadingReducer from "./reducers/loadingReducer";
 import messageReducer from './reducers/messageReducers';
 import categoryReducer from './reducers/categoryReducers';
 import productReducer from "./reducers/productReducers";
+import filterReducer from "./reducers/filterReducer";
 
 const reducers = combineReducers({
     loading: loadingReducer,
     messages: messageReducer,
     categories: categoryReducer,
-    products: productReducer
+    products: productReducer,
+    filters: filterReducer
 });
 
 const initialState = {};

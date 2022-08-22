@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
 const categoryRoutes = require('./routes/category');
 const foodRoutes = require('./routes/food');
+const filterRoutes = require('./routes/filter');
 
 // middleware...
 app.use(cookieParser());
@@ -17,7 +18,8 @@ app.use(morgan('dev'));
 app.use('/api/auth', authRoutes);
 app.use('/api/category', categoryRoutes);
 app.use('/api/food', foodRoutes);
-app.use('/uploads',express.static('uploads'))
+app.use('/uploads',express.static('uploads'));
+app.use('/api/filter', filterRoutes);
 
 connectDB();
 const port = process.env.PORT || 5000;

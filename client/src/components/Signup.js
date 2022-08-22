@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import "./Signup.css"
-import { Link, useNavigate, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import isEmail from 'validator/lib/isEmail';
 import isEmpty from 'validator/lib/isEmpty';
 import equals from 'validator/lib/equals';

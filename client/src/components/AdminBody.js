@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import Card from './Card';
+import CardOne from './CardOne';
 
 const AdminBody = () => {
     const { products } = useSelector(state => state.products);
@@ -10,7 +11,8 @@ const AdminBody = () => {
                 <div className='d-flex flex-wrap justify-content-center'>
                     {
                       products && products.map((product) => (
-                            <Card key={product._id} product={product} />
+                            // <Card key={product._id} product={product} adminPage={true}/>
+                            <CardOne key={product._id} product={product} adminPage={true}/>
                         ))
                     }
                 </div>

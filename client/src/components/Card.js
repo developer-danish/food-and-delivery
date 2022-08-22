@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { deleteProduct } from './../redux/actions/productActions';
 import { Link } from 'react-router-dom';
 
-const Card = ({ product }) => {
+const Card = ({ product, adminPage = false, homePage = false }) => {
     const dispatch = useDispatch();
     return (
         <div className="card m-4" style={{ width: "18rem" }}>
@@ -27,16 +27,29 @@ const Card = ({ product }) => {
                             ? product.productDesc.substring(0, 25) + "..." : product.productDesc.substring(0, 25)
                     }
                 </p>
-                <div className='text-center d-flex justify-content-end'>
-                    <Link to={`/admin/edit/product/${product._id}`} type='button' className='btn btn-secondary btn-sm mx-2'>
-                        <i className='far fa-edit pr-1'></i> Edit
-                    </Link>
-                    <button type='button' className='btn btn-danger btn-sm' onClick={() => dispatch(deleteProduct(product._id))}>
-                        <i className='far fa-trash-alt pr-1'></i> Delete
-                    </button>
+                {adminPage && (
+                    <div className='text-center d-flex justify-content-end'>
+                        <Link to={`/admin/edit/product/${product._id}`} type='button' className='btn btn-secondary btn-sm mx-2'>
+                            <i className='far fa-edit pr-1'></i> Edit
+                        </Link>
+                        <button type='button' className='btn btn-danger btn-sm' onClick={() => dispatch(deleteProduct(product._id))}>
+                            <i className='far fa-trash-alt pr-1'></i> Delete
+                        </button>
+                    </div>
+                )}
+                {homePage && (
+                    <div className='text-center d-flex justify-content-end'>
+                        <Link to={'#'} type='button' className='btn btn-primary btn-sm mx-2'>
+                            <i className='far fa-edit pr-1'></i> View
+                        </Link>
+                        <button type='button' className='btn btn-warning btn-sm' >
+                        <i className='far fa-trash-alt pr-1'></i> Add to Cart
+                        </button>
                 </div>
-            </div>
+                )}
+
         </div>
+        </div >
 
     )
 }
