@@ -8,6 +8,8 @@ import AdminDashboard from './AdminDashboard';
 import UserDashboard from './UserDashboard';
 import AdminEditProduct from './AdminEditProduct';
 import Shop from './Shop';
+import Cart from './Cart';
+import Product from './Product';
 
 
 const App = () => {
@@ -18,7 +20,9 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Home></Home>} />
         <Route exact path="/shop" element={<Shop></Shop>} />
-        <Route exact  path="/signin" element={<Signin />} />
+        <Route exact path="/cart" element={<Cart></Cart>} />
+        <Route exact path="/product/:productId" element={<Product></Product>} />
+        <Route exact  path="/signin" element={<Signin></Signin>} />
         <Route exact  path="/signup" element={<Signup></Signup>} />
         <Route exact  path="/admin/dashboard" element={<AdminDashboard></AdminDashboard>} />
         <Route exact  path="/user/dashboard" element={<UserDashboard></UserDashboard>} />

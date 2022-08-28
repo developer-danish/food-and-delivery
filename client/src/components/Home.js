@@ -8,7 +8,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getNewArrivals } from './../redux/actions/filterActions';
 import { showLoading } from './../helpers/loading';
-import Card from './Card';
 import CardOne from './CardOne';
 const Home = () => {
   const dispatch = useDispatch();

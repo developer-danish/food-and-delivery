@@ -1,6 +1,5 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import Card from './Card';
 import CardOne from './CardOne';
 
 const AdminBody = () => {

@@ -3,9 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { isAuthenticated, logout } from '../helpers/auth';
 import { Button } from '@mui/material';
 import "./Header.css";
+import { useSelector } from 'react-redux';
 
 const Header = () => {
     const navigate = useNavigate();
+
+    const { cart } = useSelector(state => state.cart);
 
     const handleLogout = (evt) => {
         logout(() => {
@@ -32,6 +35,11 @@ const Header = () => {
                                     <li className="nav-item">
                                         <Link to="/shop" className="nav-link" aria-current="page" >
                                             <i class="fas fa-shopping-bag"></i> Shop
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item mr-2" style={{ position: 'relative' }}>
+                                        <Link to="/cart" className="nav-link" aria-current="page" >
+                                            <i class="fas fa-shopping-cart"></i> Cart <span className='badge badge-danger' style={{ position: 'absolute', top: '0px' }}>{cart.length}</span>
                                         </Link>
                                     </li>
                                     <li className="nav-item">

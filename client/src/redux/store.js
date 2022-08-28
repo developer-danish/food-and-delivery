@@ -7,13 +7,15 @@ import messageReducer from './reducers/messageReducers';
 import categoryReducer from './reducers/categoryReducers';
 import productReducer from "./reducers/productReducers";
 import filterReducer from "./reducers/filterReducer";
+import cartReducer from "./reducers/cartReducer";
 
 const reducers = combineReducers({
     loading: loadingReducer,
     messages: messageReducer,
     categories: categoryReducer,
     products: productReducer,
-    filters: filterReducer
+    filters: filterReducer,
+    cart: cartReducer
 });
 
 const initialState = {};
