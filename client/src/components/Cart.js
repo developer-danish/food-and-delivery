@@ -1,18 +1,129 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import CardOne from "./CardOne";
+import { ADD_TO_CART } from './../redux/constants/cartConstants';
+import { removeFromCart } from "../redux/actions/cartActions";
 
 const Cart = () => {
-    const {cart} = useSelector(state => state.cart);
-  return (
-    <div>
-        {
-            cart && cart.map(c => (
-                <div>{JSON.stringify(c)}</div>
-            ))
-        }
-    </div>
-    
-  )
-}
+  const { cart } = useSelector((state) => state.cart);
+  const navigate = useNavigate();
 
-export default Cart
+  const dispatch = useDispatch();
+
+  const handleQtyChange = (e, product) => {
+    const cart = localStorage.getItem('cart')
+      ? JSON.parse(localStorage.getItem('cart')) : [];
+
+    cart.forEach(cartItem => {
+      if (cartItem._id === product._id) {
+        cartItem.count = e.target.value;
+      }
+    });
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    dispatch({
+      type: ADD_TO_CART,
+      payload: cart
+    });
+  }
+
+  
+
+  return (
+    <section className="cart-page m-4">
+      {cart.length <= 0 ? (
+        <div className="jumbotron">
+          <h1 className=" display-4">
+            {" "}
+            Your cart is empty{" "}
+            <button
+              className="btn btn-light text-primary m-4"
+              onClick={() => navigate(-1)}
+            >
+              Go Back{" "}
+            </button>{" "}
+          </h1>
+        </div>
+      ) : (
+        <>
+          <div className="jumbotron">
+            <h1 className=" display-4"> Cart </h1>
+          </div>
+          <div className="row">
+            <div className="col-md-8">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cart.map((product) => (
+                    <tr key={product._id}>
+                      <td scope="row">
+                        <img
+                          style={{ maxWidth: "110px" }}
+                          className="img-fluid w-100 img-thumbnail"
+                          src={`/uploads/${product.fileName}`}
+                          alt=""
+                        />
+                      </td>
+                      <td>
+                        {" "}
+                        <Link
+                          to={`/product/${product._id}`}
+                        >
+                          {product.productName}
+                        </Link>
+                      </td>
+                      <td>{product.productPrice.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}</td>
+                      <td><input min="1" max={product.productQuantity} type="number" onChange={(e) => handleQtyChange(e, product)} value={product.count} /></td>
+                      <td>
+                        {/* delete button */}
+                        <button
+                          onClick={() => dispatch(removeFromCart(product))}
+                          type="button"
+                          className="btn btn-danger btn-sm"
+                        >
+                          <i className="far fa-trash-alt pr-1"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="col-md-4 border-left">
+              <h2>Cart Summary</h2>
+              <p className="font-weight-light text-muted border-bottom">{cart.length === 1 ? '(1) item' : `(${cart.length}) items`} </p>
+              <p className="font-weight-bold">
+                Total: $
+                {
+                  cart.reduce(
+                    (currentSum, currentCartItem) =>
+                      currentSum + currentCartItem.count * currentCartItem.productPrice,
+                    0
+                  ).toFixed(2)
+                }
+
+              </p>
+              <button className='btn btn-dark btn-large btn-block mb-2 py-2'>Proceed to Checkout</button>
+            </div>
+          </div>
+        </>
+      )
+      }
+    </section >
+  );
+};
+
+export default Cart;
