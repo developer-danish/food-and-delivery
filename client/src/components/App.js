@@ -10,6 +10,7 @@ import AdminEditProduct from './AdminEditProduct';
 import Shop from './Shop';
 import Cart from './Cart';
 import Product from './Product';
+import Shipping from './Shipping';
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Route exact path="/shop" element={<Shop></Shop>} />
         <Route exact path="/cart" element={<Cart></Cart>} />
         <Route exact path="/product/:productId" element={<Product></Product>} />
+        <Route exact path="/shipping" element={<Shipping></Shipping>} />
         <Route exact  path="/signin" element={<Signin></Signin>} />
         <Route exact  path="/signup" element={<Signup></Signup>} />
         <Route exact  path="/admin/dashboard" element={<AdminDashboard></AdminDashboard>} />

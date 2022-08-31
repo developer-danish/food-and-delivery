@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate, useHistory } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import isEmail from 'validator/lib/isEmail';
 import isEmpty from 'validator/lib/isEmpty';
 import { showErrorMsg } from './../helpers/message';
@@ -9,8 +9,10 @@ import { isAuthenticated, setAuthentication } from './../helpers/auth';
 
 const Signin = () => {
   const navigate = useNavigate();
+  const search = useLocation().search;
 
   useEffect(() => {
+    // console.log(search);
     if (isAuthenticated() && isAuthenticated().role === 1) {
       //For admin
       navigate('/admin/dashboard');
@@ -60,13 +62,17 @@ const Signin = () => {
           // })
           //set cookies here
           setAuthentication(response.data.token, response.data.user);
+          const redirect = search.split('=')[1];
+          console.log(redirect);
           if (isAuthenticated() && isAuthenticated().role === 1) {
             //For admin
             navigate('/admin/dashboard');
           }
-          else {
+          else if (isAuthenticated() && isAuthenticated().role === 0 && !redirect) {
             //For user
             navigate('/user/dashboard');
+          } else if (isAuthenticated() && isAuthenticated().role === 0 && redirect) {
+            navigate('/shipping');
           }
         })
         .catch((err) => {

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CardOne from "./CardOne";
 import { ADD_TO_CART } from './../redux/constants/cartConstants';
 import { removeFromCart } from "../redux/actions/cartActions";
+import { isAuthenticated } from "../helpers/auth";
 
 const Cart = () => {
   const { cart } = useSelector((state) => state.cart);
@@ -29,6 +30,13 @@ const Cart = () => {
     });
   }
 
+  const handleCheckout = (evt) => {
+    if(isAuthenticated()){
+      navigate('/shipping');
+    }else{
+      navigate('/signin?redirect=shipping');
+    }
+  }
   
 
   return (
@@ -116,7 +124,7 @@ const Cart = () => {
                 }
 
               </p>
-              <button className='btn btn-dark btn-large btn-block mb-2 py-2'>Proceed to Checkout</button>
+              <button className='btn btn-dark btn-large btn-block mb-2 py-2' onClick={handleCheckout}>Proceed to Checkout</button>
             </div>
           </div>
         </>
