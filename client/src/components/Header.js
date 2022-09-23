@@ -19,7 +19,8 @@ const Header = () => {
         <nav className="navbar navbar-expand-lg bg-warning " >
             <div className="container-fluid ">
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
+                    {/* <span className="navbar-toggler-icon"></span> */}
+                    <i className="fas fa-bars"></i>
                 </button>
                 <Link to="/" className="navbar-brand" >Logo</Link>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
