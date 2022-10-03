@@ -9,6 +9,8 @@ import productReducer from "./reducers/productReducers";
 import filterReducer from "./reducers/filterReducer";
 import cartReducer from "./reducers/cartReducer";
 import orderReducer from "./reducers/orderReducers";
+import adminOrdersReducer from "./reducers/adminOrdersReducer";
+import userSpecificReducer from "./reducers/userSpecificReducers";
 
 const reducers = combineReducers({
     loading: loadingReducer,
@@ -17,7 +19,9 @@ const reducers = combineReducers({
     products: productReducer,
     filters: filterReducer,
     cart: cartReducer,
-    order: orderReducer
+    order: orderReducer,
+    adminOrders: adminOrdersReducer,
+    userSpecificOrders: userSpecificReducer,
 });
 
 const initialState = {};

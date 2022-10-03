@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { saveShippingAddress } from '../redux/actions/orderActions';
 import states from './../api/stateData';
+import { isAuthenticated } from '../helpers/auth';
 
 const Shipping = () => {
 	const navigate = useNavigate();
@@ -15,6 +16,22 @@ const Shipping = () => {
 	const [city, setCity] = useState('');
 	const [state, setState] = useState('');
 	const [phone, setPhone] = useState('');
+
+	useEffect(() => {
+		if (isAuthenticated() && isAuthenticated().role === 1) {
+			//For admin
+			navigate("/admin/dashboard/vieworders");
+		}
+		else if (isAuthenticated() && isAuthenticated().role === 0) {
+			//For user
+			localStorage.getItem("cart") ? (JSON.parse(localStorage.getItem("cart")).length>0?navigate("/shipping"):navigate("/shop")) : navigate('/shop');
+			// JSON.parse(localStorage.getItem('cart')).length > 0 ? navigate("/shipping"): navigate('/shop');
+		}
+		else {
+			navigate('/signin');
+		}
+	}, [navigate]);
+
 
 	useEffect(() => {
 		shippingAddress.address
@@ -40,7 +57,7 @@ const Shipping = () => {
 		};
 
 		dispatch(saveShippingAddress(shippingData));
-		navigate('/payment');
+		navigate('/orderSummary');
 		console.log(shippingData);
 	};
 

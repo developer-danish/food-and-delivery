@@ -1,4 +1,8 @@
-/* .navbar{
-   
-  
-} */
+.logo{
+    background-image: url(./images/logo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 60px;
+    height: 60px;
+}

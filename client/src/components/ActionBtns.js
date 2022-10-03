@@ -1,4 +1,5 @@
 import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const ActionBtns = () => (
 
@@ -18,7 +19,9 @@ const ActionBtns = () => (
           </div>
 
           <div className='col-md-4 text-center py-3 my-1'>
+            <Link to={'vieworders'}>
             <Button size="large" variant="outlined">View Orders</Button>
+            </Link>
           </div>
 
         </div>

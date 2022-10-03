@@ -14,6 +14,7 @@ const UserDashboard = () => {
     else if (isAuthenticated() && isAuthenticated().role === 0) {
       //For user
       navigate('/user/dashboard');
+      navigate('/shop');
     }
     else {
       navigate('/signin');

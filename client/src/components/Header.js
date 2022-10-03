@@ -18,13 +18,18 @@ const Header = () => {
     const showNavigation = () => (
         <nav className="navbar navbar-expand-lg bg-warning " >
             <div className="container-fluid ">
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                     {/* <span className="navbar-toggler-icon"></span> */}
                     <i className="fas fa-bars"></i>
                 </button>
-                <Link to="/" className="navbar-brand" >Logo</Link>
-                <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 " >
+                <Link to="/" className="navbar-brand">
+                    <div className="logo">
+
+                    </div>
+                </Link>
+
+                <div className="collapse navbar-collapse " id="navbarTogglerDemo03">
+                    <ul  className="navbar-nav  mb-2 mb-lg-0 ml-auto" >
                         {
                             !isAuthenticated() && (
                                 <>
@@ -68,9 +73,7 @@ const Header = () => {
                         {
                             isAuthenticated() && isAuthenticated().role === 0 && (
                                 <>
-                                    <li className="nav-item">
-                                        <Link to="/user/dashboard" className="nav-link">Dashboard</Link>
-                                    </li>
+                                   
                                     <li className="nav-item">
                                         <Link to="/" className="nav-link active" aria-current="page" >
                                             {/* <i class="fas fa-home"></i>*/}Home
@@ -79,6 +82,11 @@ const Header = () => {
                                     <li className="nav-item">
                                         <Link to="/shop" className="nav-link" aria-current="page" >
                                             <i class="fas fa-shopping-bag"></i> Shop
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="/orders" className="nav-link" aria-current="page" >
+                                            Orders
                                         </Link>
                                     </li>
                                     <li className="nav-item mr-2" style={{ position: 'relative' }}>
@@ -103,6 +111,7 @@ const Header = () => {
 
                     </ul>
                 </div>
+
             </div>
         </nav >
     );

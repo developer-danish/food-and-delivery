@@ -13,6 +13,7 @@ const orderReducer = (state = INITAL_STATE, action) => {
                     ...state,
                     shippingAddress: action.payload,
                 }
+        
             default:
                 return state;
                 

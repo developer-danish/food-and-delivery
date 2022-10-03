@@ -8,6 +8,7 @@ const authRoutes = require('./routes/auth');
 const categoryRoutes = require('./routes/category');
 const foodRoutes = require('./routes/food');
 const filterRoutes = require('./routes/filter');
+const orderRoutes = require('./routes/order');
 
 // middleware...
 app.use(cookieParser());
@@ -20,9 +21,10 @@ app.use('/api/category', categoryRoutes);
 app.use('/api/food', foodRoutes);
 app.use('/uploads',express.static('uploads'));
 app.use('/api/filter', filterRoutes);
+app.use('/api/order', orderRoutes);
 
 connectDB();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 6000;
 
 app.listen(port, () => {
     console.log("Listening to app on", port);
