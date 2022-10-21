@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Switch, HashRouter, Router } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Header';
 import Home from './Home';
 import Signin from './Signin';
@@ -16,13 +16,14 @@ import OrderSummary from './OrderSummary';
 import ViewAdminOrders from './ViewAdminOrders';
 import AdminOrderDetailView from './AdminOrderDetailView';
 import UserOrderdProducts from './UserOrderdProducts';
+import Footer from './Footer';
 
 
 const App = () => {
   return (
   <BrowserRouter>
     <Header />
-    {/* <main> */}
+    <main style={{ marginTop: "85px"}}>
       <Routes>
         <Route exact path="/" element={<Home></Home>} />
         <Route exact path="/shop" element={<Shop></Shop>} />
@@ -41,8 +42,9 @@ const App = () => {
         <Route exact  path="/admin/edit/product/:productId" element={<AdminEditProduct></AdminEditProduct>} />
         <Route exact path="*" element={<NotFound></NotFound>} />
       </Routes>
-      
-    {/* </main> */}
+
+      <Footer />
+    </main>
   </BrowserRouter>
   )
 };

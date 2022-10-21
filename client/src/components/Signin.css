@@ -1,11 +1,11 @@
-.signup-container{
+.signin-container{
     background-image: url(./images/foodnew.jpeg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     /* width: 100vw; */
     object-fit: contain;
-    opacity: 0.8;
+    opacity: 0.7;
     /* overflow-x: hidden; */
 }
 

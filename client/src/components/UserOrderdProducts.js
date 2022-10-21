@@ -10,17 +10,17 @@ function UserOrderdProducts() {
 
   useEffect(() => {
     if (isAuthenticated() && isAuthenticated().role === 1) {
-        //For admin
-        navigate("/admin/dashboard/vieworders");
+      //For admin
+      navigate("/admin/dashboard/vieworders");
     }
     else if (isAuthenticated() && isAuthenticated().role === 0) {
-        //For user
-        navigate('/orders');
+      //For user
+      navigate('/orders');
     }
     else {
-        navigate('/signin');
+      navigate('/signin');
     }
-}, [navigate]);
+  }, [navigate]);
 
   useEffect(() => {
     dispatch(getUserSpecificOrders());
@@ -56,7 +56,7 @@ function UserOrderdProducts() {
                   <th scope="col"></th>
                   <th scope="col">Product</th>
                   <th scope="col">Price</th>
-                  <th scope="col">Quantity</th>
+                  {/* <th scope="col">Quantity</th> */}
                   <th scope="col">Status</th>
                 </tr>
               </thead>
@@ -68,27 +68,31 @@ function UserOrderdProducts() {
                       return (
                         <tr key={item._id}>
                           <td scope="row">
-                            <img
-                              style={{ maxWidth: "110px" }}
-                              className="img-fluid w-100 img-thumbnail"
-                              src={`/uploads/${item.fileName}`}
-                              alt=""
-                            />
+                            <div className='d-flex justify-content-center flex-col'>
+                              <img
+                                style={{ maxWidth: "110px", minWidth: "50px" }}
+                                className="img-fluid w-100 img-thumbnail"
+                                src={`/uploads/${item.fileName}`}
+                                alt=""
+                              />
+                              <span className='text-center ml-1' style={{ fontSize: 10}}>Qty: {item.count}</span>
+                            </div>
+
                           </td>
                           <td>
                             {item.productName}
-                           </td>
-                         
+                          </td>
+
                           <td>{item.productPrice.toLocaleString("en-US", {
                             style: "currency",
                             currency: "USD",
                           })}</td>
-                          <td>
+                          {/* <td>
                             {item.count}
-                           </td>
-                           <td>
+                           </td> */}
+                          <td>
                             {order.orderStatus}
-                           </td>
+                          </td>
 
                         </tr>
                       )

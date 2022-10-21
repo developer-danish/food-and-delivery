@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { saveShippingAddress } from '../redux/actions/orderActions';
 import states from './../api/stateData';
 import { isAuthenticated } from '../helpers/auth';
+import isEmpty from 'validator/lib/isEmpty';
 
 const Shipping = () => {
 	const navigate = useNavigate();
@@ -56,9 +57,17 @@ const Shipping = () => {
 			phone,
 		};
 
+		// if(isEmpty(address) || isEmpty(address2) || isEmpty(city) || isEmpty(state)|| isEmpty(phone)){
+		// 	// navigate('/shipping');
+		// }else{
+		// 	dispatch(saveShippingAddress(shippingData));
+		// 	navigate('/orderSummary');
+		// 	// console.log(shippingData);
+		// }
 		dispatch(saveShippingAddress(shippingData));
 		navigate('/orderSummary');
 		console.log(shippingData);
+		
 	};
 
 	return (
@@ -83,6 +92,7 @@ const Shipping = () => {
 									type='text'
 									className='form-control'
 									value={address}
+									required
 									onChange={evt =>
 										setAddress(evt.target.value)
 									}
@@ -96,6 +106,7 @@ const Shipping = () => {
 									className='form-control'
 									placeholder='Apartment number, suite, unit, etc'
 									value={address2}
+									required
 									onChange={evt =>
 										setAddress2(evt.target.value)
 									}
@@ -109,6 +120,7 @@ const Shipping = () => {
 										type='text'
 										className='form-control'
 										value={city}
+										required
 										onChange={evt =>
 											setCity(evt.target.value)
 										}
@@ -119,6 +131,7 @@ const Shipping = () => {
 									<select
 										className='form-control'
 										value={state}
+										required
 										onChange={evt =>
 											setState(evt.target.value)
 										}
@@ -140,6 +153,7 @@ const Shipping = () => {
 										type='text'
 										className='form-control'
 										value={phone}
+										required
 										onChange={evt =>
 											setPhone(evt.target.value)
 										}

@@ -41,7 +41,7 @@ function AdminOrderDetailView() {
     //on order status change
 
     return (
-        <section className='container-fluid p-0'>
+        <section className='container-fluid p-0 overflow-hidden'>
             <AdminHeader></AdminHeader>
             <div className='row p-4 '>
                 <div className='col-md-4 p-4 border-right'>
@@ -102,8 +102,8 @@ function AdminOrderDetailView() {
                                 <th scope="col"></th>
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Price</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Category</th>
+                                <th scope="col">Qty</th>
+                                {/* <th scope="col">Category</th> */}
                             </tr>
                         </thead>
                         <tbody>
@@ -112,7 +112,7 @@ function AdminOrderDetailView() {
                                     <tr key={product._id}>
                                         <td scope="row">
                                             <img
-                                                style={{ maxWidth: "110px" }}
+                                                style={{ maxWidth: "110px", minWidth: "60px" }}
                                                 className="img-fluid w-100 img-thumbnail"
                                                 src={`/uploads/${product.fileName}`}
                                                 alt=""
@@ -131,11 +131,11 @@ function AdminOrderDetailView() {
 
                                         </td>
                                         {/* <td><input min="1" max={product.productQuantity} type="number" onChange={(e) => handleQtyChange(e, product)} value={product.count} /></td> */}
-                                        <td>
+                                        {/* <td>
                                             {product.productCategory.category}
                                             -
 
-                                        </td>
+                                        </td> */}
                                     </tr>
                                 ))
                             ) : ""

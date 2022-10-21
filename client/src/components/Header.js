@@ -16,7 +16,7 @@ const Header = () => {
         });
     }
     const showNavigation = () => (
-        <nav className="navbar navbar-expand-lg bg-warning " >
+        <nav className="navbar navbar-expand-lg header-nav bg-warning" >
             <div className="container-fluid ">
                 <button className="navbar-toggler"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                     {/* <span className="navbar-toggler-icon"></span> */}

@@ -38,7 +38,7 @@ const Cart = () => {
     }
   }
   
-
+  // style={{minHeight:"480px"}}
   return (
     <section className="cart-page m-4">
       {cart.length <= 0 ? (
@@ -60,23 +60,23 @@ const Cart = () => {
             <h1 className=" display-4"> Cart </h1>
           </div>
           <div className="row">
-            <div className="col-md-8">
-              <table className="table">
-                <thead>
-                  <tr>
+            <div className="col-md-8 px-0" >
+              <table  className="table table-borderless">
+                {/* <thead>
+                  <tr className="">
                     <th scope="col"></th>
                     <th scope="col">Product</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
+                    <th scope="col">Qty</th>
                     <th scope="col">Remove</th>
                   </tr>
-                </thead>
-                <tbody>
+                </thead> */}
+                <tbody >
                   {cart.map((product) => (
-                    <tr key={product._id}>
-                      <td scope="row">
+                    <tr className="w-90 d-flex justify-content-between border-top " key={product._id} >
+                      <td scope="row" >
                         <img
-                          style={{ maxWidth: "110px" }}
+                          style={{ maxWidth: "110px", minWidth: "80px" }}
                           className="img-fluid w-100 img-thumbnail"
                           src={`/uploads/${product.fileName}`}
                           alt=""

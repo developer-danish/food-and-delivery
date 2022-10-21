@@ -58,7 +58,7 @@ const Payment = () => {
 
 	}
 	return (
-		<section className='m-4'>
+		<section className='m-4 p-2'>
 			<div className='jumbotron p-1'>
 				<h5>
 					<ProgressBar step1 step2 step3 />
@@ -77,11 +77,12 @@ const Payment = () => {
 									type='radio'
 									name='paymentMethod'
 									value='DC'
+									disabled
 									onChange={handleChange}
 
 								/>
 								<label className='form-check-label'>
-									Debit Card
+									Debit Card 
 								</label>
 							</div>
 							<div className='form-check'>

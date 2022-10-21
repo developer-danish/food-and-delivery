@@ -36,7 +36,7 @@ function ViewAdminOrders() {
     return (
         <section>
             <AdminHeader></AdminHeader>
-            <div className='container-fluid m-2'>
+            <div className='container-fluid overflow-scroll m-2'>
 
                 <div className='row'>
 

@@ -6,6 +6,7 @@ import { showErrorMsg } from './../helpers/message';
 import { showLoading } from './../helpers/loading';
 import { signin } from '../api/auth';
 import { isAuthenticated, setAuthentication } from './../helpers/auth';
+import "./Signin.css";
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -118,7 +119,7 @@ const Signin = () => {
   );
 
   return (
-    <div className="signup-container">
+    <div className="signin-container">
       <div className="row vh-100">
         <div className="col-md-5 mx-auto my-auto" >
           {loading && <div className='text-center'>{showLoading()}</div>}
