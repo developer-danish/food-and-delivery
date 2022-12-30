@@ -48,7 +48,7 @@ const Home = () => {
           ) : (
             <>
               <div className='container'>
-              
+
                 <div className='row my-5'>
                   <div className='col d-flex justify-content-center flex-wrap'>
                     {
