@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useSearchParams,
+  useLocation,
+} from "react-router-dom";
 import Header from "../Header";
 import Home from "../Home";
 import Signin from "../Signin";
@@ -17,66 +23,62 @@ import ViewAdminOrders from "../ViewAdminOrders";
 import AdminOrderDetailView from "../AdminOrderDetailView";
 import UserOrderdProducts from "../UserOrderdProducts";
 import Footer from "../Footer";
+import SideBar from "../SideBar";
+
+import { isAuthenticated } from "../../helpers/auth";
+import React, { useEffect } from "react";
+import AdminBody from "../AdminBody";
 
 const App = () => {
+  const location = useLocation();
+  const isAdmin = React.useMemo(() => {
+    return (
+      isAuthenticated() &&
+      isAuthenticated().role === 1 &&
+      location.pathname.includes("admin")
+    );
+  }, [isAuthenticated(), isAuthenticated().role, location]);
+
+  useEffect(() => {
+    console.log(location);
+  });
   return (
-    <BrowserRouter>
+    <>
       <Header />
-      <main style={{ marginTop: "85px" }}>
+      {isAdmin && <SideBar />}
+
+      <main style={{ marginTop: "85px", marginLeft: isAdmin ? "200px" : "0" }}>
         <Routes>
-          <Route exact path="/" element={<Home></Home>} />
-          <Route exact path="/shop" element={<Shop></Shop>} />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/shop" element={<Shop />} />
+          <Route exact path="/orders" element={<UserOrderdProducts />} />
+          <Route exact path="/cart" element={<Cart />} />
+          <Route exact path="/product/:productId" element={<Product />} />
+          <Route exact path="/shipping" element={<Shipping />} />
+          <Route exact path="/orderSummary" element={<OrderSummary />} />
+          <Route exact path="/payment" element={<Payment />} />
+          <Route exact path="/signin" element={<Signin />} />
+          <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route exact path="/admin/orders" element={<ViewAdminOrders />} />
           <Route
             exact
-            path="/orders"
-            element={<UserOrderdProducts></UserOrderdProducts>}
+            path="/admin/orders/view/:id"
+            element={<AdminOrderDetailView />}
           />
-          <Route exact path="/cart" element={<Cart></Cart>} />
-          <Route
-            exact
-            path="/product/:productId"
-            element={<Product></Product>}
-          />
-          <Route exact path="/shipping" element={<Shipping></Shipping>} />
-          <Route
-            exact
-            path="/orderSummary"
-            element={<OrderSummary></OrderSummary>}
-          />
-          <Route exact path="/payment" element={<Payment></Payment>} />
-          <Route exact path="/signin" element={<Signin></Signin>} />
-          <Route exact path="/signup" element={<Signup></Signup>} />
-          <Route
-            exact
-            path="/admin/dashboard"
-            element={<AdminDashboard></AdminDashboard>}
-          />
-          <Route
-            exact
-            path="/admin/dashboard/vieworders"
-            element={<ViewAdminOrders></ViewAdminOrders>}
-          />
-          <Route
-            exact
-            path="/admin/dashboard/vieworders/view/:id"
-            element={<AdminOrderDetailView></AdminOrderDetailView>}
-          />
-          <Route
-            exact
-            path="/user/dashboard"
-            element={<UserDashboard></UserDashboard>}
-          />
+          <Route exact path="/admin/products" element={<AdminBody />} />
+          <Route exact path="/user/dashboard" element={<UserDashboard />} />
           <Route
             exact
             path="/admin/edit/product/:productId"
-            element={<AdminEditProduct></AdminEditProduct>}
+            element={<AdminEditProduct />}
           />
-          <Route exact path="*" element={<NotFound></NotFound>} />
+          <Route exact path="*" element={<NotFound />} />
         </Routes>
 
         <Footer />
       </main>
-    </BrowserRouter>
+    </>
   );
 };
 

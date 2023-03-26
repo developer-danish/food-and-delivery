@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
 const AdminHeader = () => (
-    <div className='bg-dark text-white py-4'>
-      <div className='container'>
-        <div className='row'>
-          <div className='col-md-6'>
-            <h1>
-              <i className='fas fa-home'></i> Admin Dashboard
-            </h1>
-          </div>
+  <div className="bg-dark text-white py-2">
+    <div className="container">
+      <div className="row">
+        <div className="col-md-6">
+          <h5>
+            <i className="fas fa-home"></i> Dashboard
+          </h5>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 
-  export default AdminHeader;
+export default AdminHeader;

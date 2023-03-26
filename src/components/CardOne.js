@@ -21,7 +21,7 @@ const CardOne = ({ product, adminPage = false, homePage = false }) => {
         <img
           style={{ width: "100%", height: "200px" }}
           className="rounded-t-lg"
-          src={`/uploads/${product.fileName}`}
+          src={`https://food-order-b6n5.onrender.com/uploads/${product.fileName}`}
           alt=""
         />
         <div className="p-3 ">
