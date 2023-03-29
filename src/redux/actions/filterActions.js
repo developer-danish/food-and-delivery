@@ -8,7 +8,7 @@ import {
 } from "./../constants/messageConstants";
 
 export const getNewArrivals =
-  (sortBy = "desc", limit = 6) =>
+  (sortBy = "desc", limit = 10) =>
   async (dispatch) => {
     try {
       dispatch({ type: START_LOADING });

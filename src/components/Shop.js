@@ -3,13 +3,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "./../redux/actions/productActions";
 import { readCategory } from "./../redux/actions/categoryActions";
-import CardOne from './CardOne';
+import CardOne from "./CardOne";
 import { getProductsByFilter } from "../redux/actions/filterActions";
 
 const Shop = () => {
   const dispatch = useDispatch();
 
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [categoryIds, setCategoryIds] = useState([]);
 
   useEffect(() => {
@@ -22,14 +22,14 @@ const Shop = () => {
 
   const handleSearch = (e) => {
     setText(e.target.value);
-    
+
     setCategoryIds([]); //reset category state
 
-    dispatch(getProductsByFilter({ type: 'text', query: e.target.value }));
-  }
+    dispatch(getProductsByFilter({ type: "text", query: e.target.value }));
+  };
 
-  const handleCategory = e => {
-    setText(''); // reset the text state...
+  const handleCategory = (e) => {
+    setText(""); // reset the text state...
 
     const currentCategoryChecked = e.target.value;
     const allCategoriesChecked = [...categoryIds];
@@ -37,16 +37,18 @@ const Shop = () => {
 
     let updatedCategoryIds;
     if (indexFound === -1) {
-        updatedCategoryIds = [...categoryIds, currentCategoryChecked];
-        setCategoryIds(updatedCategoryIds);
+      updatedCategoryIds = [...categoryIds, currentCategoryChecked];
+      setCategoryIds(updatedCategoryIds);
     } else {
       updatedCategoryIds = [...categoryIds];
-      updatedCategoryIds.splice(indexFound,1)
+      updatedCategoryIds.splice(indexFound, 1);
       setCategoryIds(updatedCategoryIds);
     }
 
-    dispatch(getProductsByFilter({ type: 'category', query: updatedCategoryIds }));
-  }
+    dispatch(
+      getProductsByFilter({ type: "category", query: updatedCategoryIds })
+    );
+  };
 
   const { products } = useSelector((state) => state.products);
   const { categories } = useSelector((state) => state.categories);
@@ -67,7 +69,7 @@ const Shop = () => {
                 className="form-control mr-sm-2"
                 type="search"
                 onChange={handleSearch}
-                name='search'
+                name="search"
                 value={text}
                 placeholder="Search"
                 aria-label="Search"
@@ -99,10 +101,11 @@ const Shop = () => {
         </div>
 
         <div className="col-lg-9 p-0">
-          <div className="d-flex flex-wrap justify-content-center mt-2">
-            {products && products.map((p) => (
-              <CardOne key={p._id} product={p} homePage={true} />
-            ))}
+          <div className="d-flex flex-wrap  mt-2">
+            {products &&
+              products.map((p) => (
+                <CardOne key={p._id} product={p} homePage={true} />
+              ))}
           </div>
         </div>
       </div>

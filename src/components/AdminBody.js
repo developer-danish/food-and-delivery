@@ -14,7 +14,7 @@ const AdminBody = () => {
       <AdminCategoryModal />
       <AdminProductModal />
       <div className="row">
-        <div className="d-flex flex-wrap justify-content-center">
+        <div className="d-flex flex-wrap ">
           {products &&
             products.map((product) => (
               // <Card key={product._id} product={product} adminPage={true}/>

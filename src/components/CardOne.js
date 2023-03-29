@@ -15,7 +15,7 @@ const CardOne = ({ product, adminPage = false, homePage = false }) => {
   return (
     <>
       <div
-        style={{ width: "16rem", height: "24rem" }}
+        style={{ width: "20rem" }}
         className="max-w-sm m-2 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 "
       >
         <img
@@ -55,17 +55,17 @@ const CardOne = ({ product, adminPage = false, homePage = false }) => {
               : product.productDesc.substring(0, 25)}
           </p>
           {adminPage && (
-            <div className="text-center mt-4 d-flex justify-content-end">
+            <div className="text-center mt-4 d-flex justify-content-between">
               <Link
                 to={`/admin/edit/product/${product._id}`}
                 type="button"
-                className="btn btn-secondary btn-sm mx-2"
+                className="btn btn-secondary btn-sm mx-2 mr-2 p-2 w-100"
               >
                 <i className="far fa-edit pr-1"></i> Edit
               </Link>
               <button
                 type="button"
-                className="btn btn-danger btn-sm"
+                className="btn btn-danger btn-sm ml-2 p-2 w-100"
                 onClick={() => dispatch(deleteProduct(product._id))}
               >
                 <i className="far fa-trash-alt pr-1"></i> Delete
@@ -73,11 +73,11 @@ const CardOne = ({ product, adminPage = false, homePage = false }) => {
             </div>
           )}
           {homePage && (
-            <div className="text-center mt-4 d-flex justify-content-end">
+            <div className="text-center mt-2 d-flex justify-content-between">
               <Link
                 to={`/product/${product._id}`}
                 type="button"
-                className="btn btn-primary btn-sm mx-2"
+                className="btn btn-primary btn-sm mr-2 p-2 w-100"
               >
                 View Product
               </Link>
@@ -85,7 +85,7 @@ const CardOne = ({ product, adminPage = false, homePage = false }) => {
                 onClick={handleAddToCart}
                 type="button"
                 disabled={product.productQuantity <= 0}
-                className="btn btn-warning btn-sm"
+                className="btn btn-warning btn-sm ml-2 p-2 w-100"
               >
                 Add to Cart
               </button>

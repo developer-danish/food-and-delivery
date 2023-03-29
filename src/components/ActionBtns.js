@@ -28,7 +28,7 @@ const ActionBtns = () => (
         </div>
 
         <div className="col-md-4 text-center py-3 my-1">
-          <Link to={"orders"}>
+          <Link to={"/admin/orders"}>
             <Button size="large" variant="outlined">
               View Orders
             </Button>
