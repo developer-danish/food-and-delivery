@@ -54,7 +54,9 @@ function ViewAdminOrders() {
                               {innerItem._id}
                             </Link>
                           </td>
-                          <td className="">{innerItem.userId.username}</td>
+                          <td className="">
+                            {innerItem.userId && innerItem.userId.username}
+                          </td>
                           <td>{JSON.parse(innerItem.shippingDetails).phone}</td>
                           <td>{innerItem.orderStatus}</td>
                           <td>
