@@ -8,6 +8,7 @@ import { Button } from "@mui/material";
 import { showErrorMsg, showSuccessMsg } from "./../helpers/message";
 import { showLoading } from "./../helpers/loading";
 import axios from "axios";
+import { getCookie } from "../helpers/cookies";
 
 const AdminEditProduct = () => {
   const [productData, setProductData] = useState({
@@ -83,10 +84,13 @@ const AdminEditProduct = () => {
     formData.append("productCategory", productCategory);
     formData.append("productQuantity", productQuantity);
 
+    const token = await getCookie("token");
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
+        Authorization: token,
       },
+      baseURL: "https://food-order-b6n5.onrender.com",
     };
 
     await axios
@@ -126,10 +130,7 @@ const AdminEditProduct = () => {
                     />
                   </div>
                   <div style={{ width: "15%" }}>
-                    {productImage && productImage.name ? // <span>
-                    //     {productImage.name}
-                    // </span>
-                    null : productImage ? (
+                    {productImage && productImage.name ? null : productImage ? ( // </span> //     {productImage.name} // <span>
                       <img
                         style={{ width: "90px", height: "60px", margin: "7px" }}
                         src={`https://food-order-b6n5.onrender.com/uploads/${productImage}`}

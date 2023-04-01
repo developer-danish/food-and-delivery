@@ -18,7 +18,7 @@ export const createProduct = (formData) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
         Authorization: token,
       },
       baseURL: "https://food-order-b6n5.onrender.com",

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import isEmpty from "validator/lib/isEmpty";
-import { showErrorMsg, showSuccessMsg } from './../helpers/message';
+import { showErrorMsg, showSuccessMsg } from "./../helpers/message";
 import { showLoading } from "./../helpers/loading";
 import { useDispatch, useSelector } from "react-redux";
 import { clear_message } from "./../redux/actions/messageActions";
-import { createProduct } from './../redux/actions/productActions';
+import { createProduct } from "./../redux/actions/productActions";
 
 const AdminProductModal = () => {
   /* REDUX GLOBAL STATE PROPERTIES*/
@@ -53,7 +53,7 @@ const AdminProductModal = () => {
       [evt.target.name]: evt.target.value,
     });
     dispatch(clear_message());
-    setClientSideError('');
+    setClientSideError("");
   };
 
   const submitProduct = (e) => {
@@ -76,16 +76,17 @@ const AdminProductModal = () => {
       formData.append("productPrice", productPrice);
       formData.append("productCategory", productCategory);
       formData.append("productQuantity", productQuantity);
-   
-     
+
+      console.log("formData", formData);
+      console.log("productData", productData);
       dispatch(createProduct(formData));
       setProductData({
         productImage: null,
-        productName: '',
-        productDesc: '',
-        productPrice: '',
-        productCategory: '',
-        productQuantity: ''
+        productName: "",
+        productDesc: "",
+        productPrice: "",
+        productCategory: "",
+        productQuantity: "",
       });
     }
   };

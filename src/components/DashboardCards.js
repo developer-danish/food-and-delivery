@@ -98,7 +98,7 @@ const DashbardCards = () => {
                   </svg>
                 </h4>
                 <span class="hind-font caption-12 c-dashboardInfo__count">
-                  {products.length}
+                  {products && products.length}
                 </span>
               </div>
             </div>
