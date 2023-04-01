@@ -8,6 +8,7 @@ import {
 } from "../constants/messageConstants";
 import { START_LOADING, STOP_LOADING } from "../constants/loadingConstants";
 import axios from "axios";
+import { getCookie } from "../../helpers/cookies";
 
 export const readCategory = () => async (dispatch) => {
   try {
@@ -29,11 +30,14 @@ export const readCategory = () => async (dispatch) => {
   }
 };
 export const createCategory = (formData) => async (dispatch) => {
+  const token = await getCookie("token");
   try {
     const config = {
       headers: {
         "Content-Type": "application/json",
+        Authorization: token,
       },
+
       baseURL: "https://food-order-b6n5.onrender.com",
     };
     dispatch({ type: START_LOADING });

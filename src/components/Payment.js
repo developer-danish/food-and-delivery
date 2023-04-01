@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { isAuthenticated } from "../helpers/auth";
+import { getCookie } from "../helpers/cookies";
 
 const Payment = () => {
   const [paymentMethod, setPaymentMethod] = useState({ paymentMode: "POD" });
@@ -28,7 +29,8 @@ const Payment = () => {
     }
   }, [navigate]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    const token = await getCookie("token");
     try {
       const data = {
         shippingAddress: shippingAddress,
@@ -39,6 +41,7 @@ const Payment = () => {
       const config = {
         headers: {
           "Content-Type": "application/json",
+          Authorization: token,
         },
         baseURL: "https://food-order-b6n5.onrender.com",
       };

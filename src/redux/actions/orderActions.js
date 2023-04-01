@@ -5,6 +5,7 @@ import {
 import { START_LOADING, STOP_LOADING } from "./../constants/loadingConstants";
 import { SHOW_ERROR_MESSAGE } from "./../constants/messageConstants";
 import axios from "axios";
+import { getCookie } from "../../helpers/cookies";
 
 export const saveShippingAddress = (data) => async (dispatch) => {
   dispatch({
@@ -16,10 +17,12 @@ export const saveShippingAddress = (data) => async (dispatch) => {
 };
 
 export const getUserSpecificOrders = () => async (dispatch) => {
+  const token = await getCookie("token");
   try {
     const config = {
       headers: {
         "Content-Type": "application/json",
+        Authorization: token,
       },
       baseURL: "https://food-order-b6n5.onrender.com",
     };

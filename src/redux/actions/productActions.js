@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getCookie } from "../../helpers/cookies";
 import {
   CREATE_PRODUCT,
   GET_PRODUCTS,
@@ -12,10 +13,13 @@ import {
 import { DELETE_PRODUCT } from "./../constants/productConstants";
 
 export const createProduct = (formData) => async (dispatch) => {
+  const token = await getCookie("token");
+
   try {
     const config = {
       headers: {
         "Content-Type": "application/json",
+        Authorization: token,
       },
       baseURL: "https://food-order-b6n5.onrender.com",
     };
@@ -73,9 +77,17 @@ export const getProduct = (productId) => async (dispatch) => {
 };
 
 export const deleteProduct = (productId) => async (dispatch) => {
+  const token = await getCookie("token");
+
   try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    };
     dispatch({ type: START_LOADING });
-    const response = await axios.delete(`/api/food/${productId}`);
+    const response = await axios.delete(`/api/food/${productId}`, config);
     dispatch({ type: STOP_LOADING });
     dispatch({ type: DELETE_PRODUCT, payload: response.data });
   } catch (err) {
