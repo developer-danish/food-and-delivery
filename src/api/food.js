@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getCookie } from "../helpers/cookies";
+import { API_ENDPOINTS } from "./constants";
 export const addNewFood = async (data) => {
   const token = await getCookie("token");
   const config = {
@@ -7,7 +8,7 @@ export const addNewFood = async (data) => {
       "Content-Type": "application/json",
       Authorization: token,
     },
-    baseURL: "https://food-order-b6n5.onrender.com",
+    baseURL: API_ENDPOINTS.BASE_URL,
   };
   const response = await axios.post("/api/food", data, config);
   return response;

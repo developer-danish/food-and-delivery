@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteProduct } from "./../redux/actions/productActions";
 import { addToCart } from "./../redux/actions/cartActions";
+import { API_ENDPOINTS } from "../api/constants";
 
 const CardOne = ({ product, adminPage = false, homePage = false }) => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const CardOne = ({ product, adminPage = false, homePage = false }) => {
         <img
           style={{ width: "100%", height: "200px" }}
           className="rounded-t-lg"
-          src={`https://food-order-b6n5.onrender.com/uploads/${product.fileName}`}
+          src={`${API_ENDPOINTS.UPLOAD_URL}${product.fileName}`}
           alt=""
         />
         <div className="p-3 ">

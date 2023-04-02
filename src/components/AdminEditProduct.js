@@ -9,6 +9,7 @@ import { showErrorMsg, showSuccessMsg } from "./../helpers/message";
 import { showLoading } from "./../helpers/loading";
 import axios from "axios";
 import { getCookie } from "../helpers/cookies";
+import { API_ENDPOINTS } from "../api/constants";
 
 const AdminEditProduct = () => {
   const [productData, setProductData] = useState({
@@ -90,7 +91,7 @@ const AdminEditProduct = () => {
         "Content-Type": "multipart/form-data",
         Authorization: token,
       },
-      baseURL: "https://food-order-b6n5.onrender.com",
+      baseURL: API_ENDPOINTS.BASE_URL,
     };
 
     await axios
@@ -133,7 +134,7 @@ const AdminEditProduct = () => {
                     {productImage && productImage.name ? null : productImage ? ( // </span> //     {productImage.name} // <span>
                       <img
                         style={{ width: "90px", height: "60px", margin: "7px" }}
-                        src={`https://food-order-b6n5.onrender.com/uploads/${productImage}`}
+                        src={`${API_ENDPOINTS.UPLOAD_URL}${productImage}`}
                         alt="product"
                       />
                     ) : null}

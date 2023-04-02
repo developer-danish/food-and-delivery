@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../redux/actions/productActions";
 import { useEffect } from "react";
 import { addToCart } from "./../redux/actions/cartActions";
+import { API_ENDPOINTS } from "../api/constants";
 
 const Product = () => {
   const { productId } = useParams();
@@ -36,7 +37,7 @@ const Product = () => {
             <img
               style={{ width: "100%", objectFit: "contain", height: "70%" }}
               className="rounded-t-lg"
-              src={`https://food-order-b6n5.onrender.com/uploads/${product.fileName}`}
+              src={`${API_ENDPOINTS.UPLOAD_URL}${product.fileName}`}
               alt=""
             />
           </div>

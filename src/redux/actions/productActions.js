@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_ENDPOINTS } from "../../api/constants";
 import { getCookie } from "../../helpers/cookies";
 import {
   CREATE_PRODUCT,
@@ -21,7 +22,7 @@ export const createProduct = (formData) => async (dispatch) => {
         "Content-Type": "multipart/form-data",
         Authorization: token,
       },
-      baseURL: "https://food-order-b6n5.onrender.com",
+      baseURL: API_ENDPOINTS.BASE_URL,
     };
     dispatch({ type: START_LOADING });
     const response = await axios.post("/api/food", formData, config);
@@ -45,7 +46,7 @@ export const getProducts = () => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const response = await axios.get("/api/food", {
-      baseURL: "https://food-order-b6n5.onrender.com",
+      baseURL: API_ENDPOINTS.BASE_URL,
     });
     dispatch({ type: STOP_LOADING });
     dispatch({ type: GET_PRODUCTS, payload: response.data.products });
@@ -62,7 +63,7 @@ export const getProduct = (productId) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const response = await axios.get(`/api/food/${productId}`, {
-      baseURL: "https://food-order-b6n5.onrender.com",
+      baseURL: API_ENDPOINTS.BASE_URL,
     });
     dispatch({ type: STOP_LOADING });
     dispatch({ type: GET_PRODUCT, payload: response.data });
@@ -85,6 +86,7 @@ export const deleteProduct = (productId) => async (dispatch) => {
         "Content-Type": "application/json",
         Authorization: token,
       },
+      baseURL: API_ENDPOINTS.BASE_URL,
     };
     dispatch({ type: START_LOADING });
     const response = await axios.delete(`/api/food/${productId}`, config);

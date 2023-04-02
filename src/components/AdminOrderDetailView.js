@@ -8,6 +8,7 @@ import {
 } from "../redux/actions/adminOrdersActions";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../helpers/auth";
+import { API_ENDPOINTS } from "../api/constants";
 
 function AdminOrderDetailView() {
   const { id } = useParams();
@@ -179,7 +180,7 @@ function AdminOrderDetailView() {
                         <img
                           style={{ maxWidth: "110px", minWidth: "60px" }}
                           className="img-fluid w-100 img-thumbnail"
-                          src={`https://food-order-b6n5.onrender.com/uploads/${product.fileName}`}
+                          src={`${API_ENDPOINTS.UPLOAD_URL}${product.fileName}`}
                           alt=""
                         />
                       </td>

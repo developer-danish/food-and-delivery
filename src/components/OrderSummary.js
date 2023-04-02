@@ -6,6 +6,7 @@ import CardOne from "./CardOne";
 import { ADD_TO_CART } from "./../redux/constants/cartConstants";
 import { removeFromCart } from "../redux/actions/cartActions";
 import { isAuthenticated } from "../helpers/auth";
+import { API_ENDPOINTS } from "../api/constants";
 
 function OrderSummary() {
   const { cart } = useSelector((state) => state.cart);
@@ -69,7 +70,7 @@ function OrderSummary() {
                       <img
                         style={{ maxWidth: "110px" }}
                         className="img-fluid w-100 img-thumbnail"
-                        src={`https://food-order-b6n5.onrender.com/uploads/${product.fileName}`}
+                        src={`${API_ENDPOINTS.UPLOAD_URL}${product.fileName}`}
                         alt=""
                       />
                     </td>

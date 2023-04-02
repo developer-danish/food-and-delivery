@@ -9,12 +9,13 @@ import {
 import { START_LOADING, STOP_LOADING } from "../constants/loadingConstants";
 import axios from "axios";
 import { getCookie } from "../../helpers/cookies";
+import { API_ENDPOINTS } from "../../api/constants";
 
 export const readCategory = () => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const response = await axios.get("/api/category", {
-      baseURL: "https://food-order-b6n5.onrender.com",
+      baseURL: API_ENDPOINTS.BASE_URL,
     });
     dispatch({ type: STOP_LOADING });
     dispatch({
@@ -37,8 +38,7 @@ export const createCategory = (formData) => async (dispatch) => {
         "Content-Type": "application/json",
         Authorization: token,
       },
-
-      baseURL: "https://food-order-b6n5.onrender.com",
+      baseURL: API_ENDPOINTS.BASE_URL,
     };
     dispatch({ type: START_LOADING });
     const response = await axios.post("/api/category", formData, config);

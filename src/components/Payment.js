@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { isAuthenticated } from "../helpers/auth";
 import { getCookie } from "../helpers/cookies";
+import { API_ENDPOINTS } from "../api/constants";
 
 const Payment = () => {
   const [paymentMethod, setPaymentMethod] = useState({ paymentMode: "POD" });
@@ -43,7 +44,7 @@ const Payment = () => {
           "Content-Type": "application/json",
           Authorization: token,
         },
-        baseURL: "https://food-order-b6n5.onrender.com",
+        baseURL: API_ENDPOINTS.BASE_URL,
       };
       const response = axios.post("api/order", data, config);
       if (!loading) {

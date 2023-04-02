@@ -7,11 +7,12 @@ import { START_LOADING, STOP_LOADING } from "./../constants/loadingConstants";
 import { SHOW_ERROR_MESSAGE } from "./../constants/messageConstants";
 import axios from "axios";
 import { getCookie } from "../../helpers/cookies";
+import { API_ENDPOINTS } from "../../api/constants";
 export const getAllOrderdProducts = () => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const response = await axios.get("/api/order/getall", {
-      baseURL: "https://food-order-b6n5.onrender.com",
+      baseURL: API_ENDPOINTS.BASE_URL,
     });
     dispatch({ type: STOP_LOADING });
     dispatch({ type: GET_ALL_ORDERD_PRODUCTS, payload: response.data.orders });
@@ -29,7 +30,7 @@ export const getSingleUserOrderdProducts = (id) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const response = await axios.get(`/api/order/single/${id}`, {
-      baseURL: "https://food-order-b6n5.onrender.com",
+      baseURL: API_ENDPOINTS.BASE_URL,
     });
     dispatch({ type: STOP_LOADING });
     dispatch({

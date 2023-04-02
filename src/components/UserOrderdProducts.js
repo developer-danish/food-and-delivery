@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserSpecificOrders } from "../redux/actions/orderActions";
 import { isAuthenticated } from "../helpers/auth";
+import { API_ENDPOINTS } from "../api/constants";
 function UserOrderdProducts() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -66,7 +67,7 @@ function UserOrderdProducts() {
                             <img
                               style={{ maxWidth: "110px", minWidth: "50px" }}
                               className="img-fluid w-100 img-thumbnail"
-                              src={`https://food-order-b6n5.onrender.com/uploads/${item.fileName}`}
+                              src={`${API_ENDPOINTS.UPLOAD_URL}${item.fileName}`}
                               alt=""
                             />
                             <span

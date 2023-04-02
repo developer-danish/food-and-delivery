@@ -6,6 +6,7 @@ import { START_LOADING, STOP_LOADING } from "./../constants/loadingConstants";
 import { SHOW_ERROR_MESSAGE } from "./../constants/messageConstants";
 import axios from "axios";
 import { getCookie } from "../../helpers/cookies";
+import { API_ENDPOINTS } from "../../api/constants";
 
 export const saveShippingAddress = (data) => async (dispatch) => {
   dispatch({
@@ -24,7 +25,7 @@ export const getUserSpecificOrders = () => async (dispatch) => {
         "Content-Type": "application/json",
         Authorization: token,
       },
-      baseURL: "https://food-order-b6n5.onrender.com",
+      baseURL: API_ENDPOINTS.BASE_URL,
     };
     const user = JSON.parse(localStorage.getItem("user"));
     dispatch({ type: START_LOADING });

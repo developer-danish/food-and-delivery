@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_ENDPOINTS } from "../../api/constants";
 import { getCookie } from "../../helpers/cookies";
 import { GET_NEW_ARRIVALS } from "../constants/filterConstants";
 import { GET_PRODUCTS } from "../constants/productConstants";
@@ -16,7 +17,7 @@ export const getNewArrivals =
       const response = await axios.get(
         `/api/filter?sortBy=${sortBy}&limit=${limit}`,
         {
-          baseURL: "https://food-order-b6n5.onrender.com",
+          baseURL: API_ENDPOINTS.BASE_URL,
         }
       );
       dispatch({ type: STOP_LOADING });
@@ -39,7 +40,7 @@ export const getProductsByFilter = (arg) => async (dispatch) => {
         "Content-Type": "application/json",
         Authorization: token,
       },
-      baseURL: "https://food-order-b6n5.onrender.com",
+      baseURL: API_ENDPOINTS.BASE_URL,
     };
     const response = await axios.post(
       "/api/filter/search",

@@ -42,6 +42,7 @@ const App = () => {
   useEffect(() => {
     console.log(location);
   });
+
   return (
     <>
       <Header />
