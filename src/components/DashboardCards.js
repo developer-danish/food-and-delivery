@@ -75,7 +75,7 @@ const DashbardCards = () => {
                   </svg>
                 </h4>
                 <span class="hind-font caption-12 c-dashboardInfo__count">
-                  {orders.length}
+                  {!!allUserOrders.length && allUserOrders[0].length}
                 </span>
                 {/* <span class="hind-font caption-12 c-dashboardInfo__subInfo">
                   Last month: €30

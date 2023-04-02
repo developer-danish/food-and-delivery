@@ -53,6 +53,7 @@ export const updateOrderStatus = (data) => async (dispatch) => {
         "Content-Type": "application/json",
         Authorization: token,
       },
+      baseURL: API_ENDPOINTS.BASE_URL,
     };
     dispatch({ type: START_LOADING });
     const response = await axios.put(
