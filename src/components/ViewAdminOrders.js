@@ -46,7 +46,10 @@ function ViewAdminOrders() {
               <tbody>
                 {allUserOrders
                   ? allUserOrders.map((item) => {
-                      let date = new Date();
+                      item.sort(
+                        (a, b) =>
+                          Date.parse(b.createdAt) - Date.parse(a.createdAt)
+                      );
                       return item.map((innerItem) => (
                         <tr key={innerItem._id}>
                           <td scope="row">
@@ -60,9 +63,8 @@ function ViewAdminOrders() {
                           <td>{JSON.parse(innerItem.shippingDetails).phone}</td>
                           <td>{innerItem.orderStatus}</td>
                           <td>
-                            {date.toLocaleDateString(
-                              "en-US",
-                              innerItem.createdAt
+                            {new Date(innerItem.createdAt).toLocaleDateString(
+                              "en-US"
                             )}
                           </td>
                         </tr>
