@@ -117,7 +117,7 @@ const Signin = () => {
               id="password"
               placeholder="Password"
             />
-            <i class="input-icon uil uil-user"></i>
+            <i className="input-icon uil uil-user"></i>
           </div>
         </div>
         <div className="row mb-3">

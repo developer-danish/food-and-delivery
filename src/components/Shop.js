@@ -54,7 +54,7 @@ const Shop = () => {
   const { categories } = useSelector((state) => state.categories);
   return (
     <section className=" shop-page m-4">
-      <div className="jumbotron">
+      <div className="jumbotron" style={{height: '50px', display:'flex', alignItems:'center'}}>
         <h1 className=" display-4"> Shop </h1>
       </div>
       <div className="row">

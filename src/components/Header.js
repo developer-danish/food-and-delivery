@@ -16,7 +16,7 @@ const Header = () => {
         });
     }
     const showNavigation = () => (
-        <nav className="navbar navbar-expand-lg header-nav bg-warning" >
+        <nav className="navbar navbar-expand-md header-nav bg-warning" style={{zIndex:100,paddingBottom: '0'}}>
             <div className="container-fluid ">
                 <button className="navbar-toggler"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                     {/* <span className="navbar-toggler-icon"></span> */}
@@ -24,12 +24,12 @@ const Header = () => {
                 </button>
                 <Link to="/" className="navbar-brand">
                     <div className="logo">
-
                     </div>
                 </Link>
 
                 <div className="collapse navbar-collapse " id="navbarTogglerDemo03">
-                    <ul  className="navbar-nav  mb-2 mb-lg-0 ml-auto" >
+                <span style={{marginLeft: '50px', fontSize:'20px'}}> <b>⭑⭑⭑★✪ My Kitchen ✪★⭑⭑⭑</b></span>
+                    <ul  className="navbar-nav  mb-2 mb-lg-0 ml-auto" style={{fontWeight:'bold'}}>
                         {
                             !isAuthenticated() && (
                                 <>

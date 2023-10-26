@@ -1,9 +1,11 @@
 import React from "react";
 import "./home.css";
+import { useNavigate } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import pic from "../assets/images/banner4.jpg";
-import pic2 from "../assets/images/banner5.jpg";
-import pic3 from "../assets/images/banner7.jpg";
+import vid from "../assets/Designer.mp4";
+import pic2 from "../assets/images/spices.jpg";
+import pic3 from "../assets/images/burgerill.jpg";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getNewArrivals } from "./../redux/actions/filterActions";
@@ -13,6 +15,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const { newArrivals } = useSelector((state) => state.filters);
   const { loading } = useSelector((state) => state.loading);
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(getNewArrivals());
   }, [dispatch]);
@@ -29,6 +32,16 @@ const Home = () => {
           <img className="d-block w-100" src={pic3} alt="Third slide" />
         </Carousel.Item>
       </Carousel>
+      <br></br>
+      <video width="320" height="240" autoPlay loop playsinline muted>
+        <source src={vid} type="video/mp4" />
+      </video>
+      <a style={{ textAlign: 'center', display: 'flex', width:'80vw', margin:'auto', justifyContent: 'center', backgroundColor:'orange'}}
+        href="./LeftOver.jsx"
+        className="btn btn-primary" 
+      >
+       <b style={{fontWeight: 'bold', fontSize: '30px', fontFamily:'revert-layer'}}> Left Over Food</b>
+      </a>
       <div>
         {loading ? (
           <div className="text-center">{showLoading()}</div>

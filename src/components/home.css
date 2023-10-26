@@ -14,3 +14,14 @@ img{
     object-fit: cover;
 }
 
+.hunger{
+    background-image: url(../assets/images/hunger.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+video {
+    object-fit:fill;
+    width: 80vw;
+    height: 50vh;
+    margin-left: 9vw;
+  }

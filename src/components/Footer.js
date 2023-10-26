@@ -48,7 +48,7 @@ const Footer = () => {
                         <a
                             className="btn text-white btn-floating m-1"
                             style={{backgroundColor: "#0082ca"}}
-                            href="#!"
+                            href="https://www.linkedin.com/company/mykitchenuk?originalSubdomain=uk"
                             role="button"
                         ><i className="fab fa-linkedin-in"></i>
                         </a>
@@ -67,7 +67,7 @@ const Footer = () => {
 
                 {/* <!-- Copyright --> */}
                 <div className="text-center p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
-                    © 2022 Copyright:
+                    © 2023 Copyright:
                     <a className="text-white" href="https://mdbootstrap.com/"> Developer's Group</a>
                 </div>
                 {/* <!-- Copyright --> */}

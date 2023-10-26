@@ -16,8 +16,8 @@ const CardOne = ({ product, adminPage = false, homePage = false }) => {
   return (
     <>
       <div
-        style={{ width: "20rem" }}
-        className="max-w-sm m-2 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 "
+        style={{ width: "20rem", boxShadow:'3px 2px #989898'}}
+        className="max-w-sm m-2 bg-white card rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 "
       >
         <img
           style={{ width: "100%", height: "200px" }}

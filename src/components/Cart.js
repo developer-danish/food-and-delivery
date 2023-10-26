@@ -58,9 +58,10 @@ const Cart = () => {
         </div>
       ) : (
         <>
-          <div className="jumbotron">
-            <h1 className=" display-4"> Cart </h1>
-          </div>
+          <div className="jumbotron" style={{height: '50px', display:'flex', alignItems:'center'}}>
+            <h2 className=" display-4"> Cart </h2>
+           </div> 
+          
           <div className="row">
             <div className="col-md-8 px-0">
               <table className="table table-borderless">

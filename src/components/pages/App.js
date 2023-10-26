@@ -28,6 +28,8 @@ import SideBar from "../SideBar";
 import { isAuthenticated } from "../../helpers/auth";
 import React, { useEffect } from "react";
 import AdminBody from "../AdminBody";
+import LeftOver from "../LeftOver";
+import LeftOverModal from "../LeftOverModal";
 
 const App = () => {
   const location = useLocation();
@@ -37,6 +39,7 @@ const App = () => {
       isAuthenticated().role === 1 &&
       location.pathname.includes("admin")
     );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated(), isAuthenticated().role, location]);
 
   useEffect(() => {
@@ -48,7 +51,7 @@ const App = () => {
       <Header />
       {isAdmin && <SideBar />}
 
-      <main style={{ marginTop: "85px", marginLeft: isAdmin ? "200px" : "0" }}>
+      <main style={{ marginTop: "85px", marginLeft: isAdmin ? "200px" : "0", backgroundColor:'#eee8aa' }}>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/shop" element={<Shop />} />
@@ -73,6 +76,21 @@ const App = () => {
             exact
             path="/admin/edit/product/:productId"
             element={<AdminEditProduct />}
+          />
+          <Route 
+            exact
+            path="/LeftOver.jsx"
+            element={<LeftOver />}
+          />
+          {/* <Route
+            exact
+            path="/adminProductModal"
+            element={<AdminProductModal />}
+          /> */}
+          <Route
+            exact
+            path="/leftovermodal"
+            element={<LeftOverModal />}
           />
           <Route exact path="*" element={<NotFound />} />
         </Routes>
